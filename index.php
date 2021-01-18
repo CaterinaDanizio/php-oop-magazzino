@@ -19,11 +19,16 @@ Generare alcune istanze di ogni classe, hai fini di test e per meglio comprender
         public $location;
         public $prodotti = [];
 
-        public function __construct($nome, $location)
-          {
+        public function __construct($nome, $location) {
             $this -> nome = $nome;
             $this -> location = $location;
           }
+        
+        public function __toString() {
+        return 'nome: ' . $this -> nome . '<br>' 
+            . 'location: ' . $this -> location . '<br>'
+            . 'prodotti: ' . $this -> prodotti;
+        }
    }
    
     class Prodotto {
@@ -35,6 +40,11 @@ Generare alcune istanze di ogni classe, hai fini di test e per meglio comprender
         $this -> nome = $nome;
         $this -> prezzo = $prezzo;
        }
+
+       public function __toString() {
+       return 'nome: ' . $this -> nome . '<br>' 
+            . 'prezzo: ' . $this -> prezzo;
+        }
     }
     
         $magazzino = new Magazzino("AmazonStock", "Milano");
@@ -44,13 +54,41 @@ Generare alcune istanze di ogni classe, hai fini di test e per meglio comprender
         $prodotto2 = new Prodotto("Smartphone Huawei", "250");
         $prodotto3 = new Prodotto("Libro: La cucina italiana", "30");
 
-        var_dump($magazzino);
-        var_dump($magazzino2);
-        var_dump($magazzino3);
-        var_dump($prodotto);
-        var_dump($prodotto2);
-        var_dump($prodotto3);
+        // var_dump($magazzino);
+        // var_dump($magazzino2);
+        // var_dump($magazzino3);
+        // var_dump($prodotto);
+        // var_dump($prodotto2);
+        // var_dump($prodotto3);
+    
+    class FashionProduct extends Prodotto {
 
+        public $taglia;
+	    public $tessuto;
+	    public $colore; 
+
+        public function __construct($nome, $prezzo, $taglia, $tessuto, $colore) {
+       
+       parent::__construct($nome, $prezzo);
+        $this -> taglia = $taglia;
+        $this -> tessuto = $tessuto;
+        $this -> colore = $colore;
+       }
+
+       public function __toString() {
+       return parent::__toString() . '<br>'
+            . 'taglia: ' . $this -> taglia . '<br>'
+            . 'tessuto: ' . $this -> tessuto . '<br>'
+            . 'colore: ' . $this -> colore . '<br>';
+        }
+    }
+
+    $prodotto4 = new FashionProduct("Abito da sera", "300", "M", "Seta", "Blue");
+    
+    echo $prodotto . '<br><br>'
+        . $prodotto2 . '<br><br>'
+        . $prodotto3 . '<br><br>'
+         . $prodotto4;
     ?>
     
 </body>
